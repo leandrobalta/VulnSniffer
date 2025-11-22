@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mining": "ts-node src/mining.ts"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,15 @@
   },
   "homepage": "https://github.com/leandrobalta/VulnSniffer#readme",
   "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/node": "^24.10.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "glob": "^13.0.0",
+    "octokit": "^5.0.5",
+    "simple-git": "^3.30.0"
   }
 }

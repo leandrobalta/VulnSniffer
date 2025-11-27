@@ -5,13 +5,11 @@ import * as path from "path";
 import * as readline from "readline";
 import { glob } from "glob";
 
-// ================= CONFIGURAÇÕES =================
 
 const INPUT_CSV = path.join(__dirname, "repositorios_selecionados.csv");
 const OUTPUT_CSV = path.join(__dirname, "resultados_analise_nativo.csv");
 const TEMP_DIR = path.join(__dirname, "temp_repos");
 
-// Padrões de Má-Configuração (Mesma lógica anterior)
 const VULN_PATTERNS = [
     {
         id: "DANGEROUS_CORS",
@@ -42,7 +40,6 @@ const VULN_PATTERNS = [
     }
 ];
 
-// ================= UTILITÁRIOS =================
 
 const git = simpleGit();
 
@@ -52,46 +49,32 @@ const removeDir = (dirPath: string) => {
     }
 };
 
-// ================= LÓGICA AST (NATIVA) =================
-
-/**
- * Função que visita os nós da AST recursivamente
- */
 function visitNode(node: ts.Node, sourceFile: ts.SourceFile, findings: string[], filePath: string) {
     
-    // Verifica se o nó é uma atribuição de propriedade em um objeto (ex: synchronize: true)
     if (ts.isPropertyAssignment(node)) {
         const nameNode = node.name;
         let propName = "";
 
-        // Pega o nome da propriedade (pode ser identificador ou string)
         if (ts.isIdentifier(nameNode) || ts.isStringLiteral(nameNode)) {
             propName = nameNode.text;
         }
 
         const initializer = node.initializer;
         
-        // Pega o texto do valor (ex: "true", "*", "12345")
-        // No nativo, precisamos passar o sourceFile para o getText funcionar corretamente sem type checker
         const valueText = initializer.getText(sourceFile).replace(/['"`]/g, ""); 
 
-        // VERIFICAÇÃO DOS PADRÕES
         VULN_PATTERNS.forEach(pattern => {
             if (pattern.properties.includes(propName)) {
                 
-                // 1. Checagem de String Hardcoded (Segredos)
                 if (pattern.checkType === "hardcoded_string") {
-                    // Verifica se é StringLiteral e não parece ser variável de ambiente
                     if (ts.isStringLiteral(initializer) && !valueText.includes("env")) {
-                        if (valueText.length > 5) { // Filtro básico de tamanho
+                        if (valueText.length > 5) { 
                             findings.push(`[${pattern.id}] ${propName} encontrado com valor fixo em ${path.basename(filePath)}`);
                         }
                     }
                 }
                 
-                // 2. Checagem de Valor Exato (Booleans, Strings especificas)
                 else if (pattern.values && pattern.values.includes(valueText)) {
-                    // Verifica se é o token literal TRUE ou FALSE ou String
                     if (
                         initializer.kind === ts.SyntaxKind.TrueKeyword || 
                         ts.isStringLiteral(initializer)
@@ -103,20 +86,15 @@ function visitNode(node: ts.Node, sourceFile: ts.SourceFile, findings: string[],
         });
     }
 
-    // Continua descendo na árvore (recursão)
     ts.forEachChild(node, (child) => visitNode(child, sourceFile, findings, filePath));
 }
 
-/**
- * Lê o arquivo e inicia a travessia da AST
- */
 function scanFile(filePath: string): string[] {
     const findings: string[] = [];
     
     try {
         const fileContent = fs.readFileSync(filePath, "utf-8");
         
-        // Cria a representação AST do arquivo (SourceFile)
         const sourceFile = ts.createSourceFile(
             filePath,
             fileContent,
@@ -124,7 +102,6 @@ function scanFile(filePath: string): string[] {
             true // setParentNodes (útil se precisarmos subir na árvore, mas consome mais memória)
         );
 
-        // Inicia a visitação a partir da raiz
         visitNode(sourceFile, sourceFile, findings, filePath);
         
     } catch (err) {
@@ -134,7 +111,6 @@ function scanFile(filePath: string): string[] {
     return findings;
 }
 
-// ================= FLUXO PRINCIPAL =================
 
 async function main() {
     console.log("=== Iniciando VulnSniffer - Análise AST Nativa ===");
@@ -159,7 +135,6 @@ async function main() {
             continue;
         }
 
-        // Parse simples da linha CSV
         const cols = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
         const repoName = cols[0];
         const repoUrl = cols[1];
@@ -172,18 +147,15 @@ async function main() {
         const localPath = path.join(TEMP_DIR, repoName.replace("/", "_"));
 
         try {
-            // 1. CLONE
             removeDir(localPath);
             await git.clone(repoUrl, localPath, ["--depth", "1"]);
 
-            // 2. LOCALIZAR ARQUIVOS .TS (Usando glob, pois removemos o ts-morph)
-            // Ignora node_modules e arquivos de teste
             const tsFiles = await glob(`${localPath}/**/*.ts`, { 
                 ignore: [
                     '**/node_modules/**', 
                     '**/*.spec.ts', 
                     '**/*.test.ts', 
-                    '**/*.d.ts' // Ignora definições de tipo
+                    '**/*.d.ts'
                 ],
                 windowsPathsNoEscape: true 
             });
@@ -191,7 +163,6 @@ async function main() {
             console.log(`   Arquivos encontrados: ${tsFiles.length}`);
             let vulnFound = false;
 
-            // 3. ANÁLISE AST
             for (const file of tsFiles) {
                 const issues = scanFile(file);
                 

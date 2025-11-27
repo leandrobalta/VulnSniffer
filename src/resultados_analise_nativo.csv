@@ -1,0 +1,114 @@
+RepoURL,Stars,Framework,Vulnerabilidade,Detalhes
+https://github.com/Artur-Poffo/Code-Spark-API.git,2,Backend Detectado (fastify),NAO,Clean
+https://github.com/dtm-labs/dtmcli-node.git,24,Backend Detectado (sequelize),NAO,Clean
+https://github.com/KayoRonald/euajudo-back-end.git,2,Backend Detectado (express),NAO,Clean
+https://github.com/tauisilva/valorant-app.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/thalesmanoel/autogestor-server.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/joaowinkelmann/finalflow-api.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/iury-assuncao/voluntaria-tech-backend.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/FelipeModena/trabalhante-base-api.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/leonardojribeiro/Sistema-de-gerenciamento-de-oficinas-back-end.git,3,Backend Detectado (express),NAO,Clean
+https://github.com/guilhermecaixeta/SISGESPORT-FrontEnd.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/brunokobi/tccbackend.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/FelipeRodrigues1337/mybarber-backend.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/ralfferreira/hexperience-api.git,2,Backend Detectado (express),NAO,Clean
+https://github.com/miuxasantos/miku-express.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/murilopysklewitz/whatsapp-bot-academico.git,1,Backend Detectado (prisma),NAO,Clean
+https://github.com/arthursteinerr/trabalho-dev-api.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/leonardo02lobo/Calcular-Indice-Academico-Backend.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/Matheus-Merlos/Crassus-API.git,2,Backend Detectado (express),NAO,Clean
+https://github.com/renanjava/testes-escola-de-TI.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em auth.controller.int-spec.ts"
+https://github.com/renanjava/testes-escola-de-TI.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em auth.controller.int-spec.ts"
+https://github.com/YasArcher/back-economia.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/cleilsonalvino/ecommerce-node-api.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/CarlJSL/AppWeb-IPDECTI.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/Herick2D/bot-academico.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/luissavighago/chatbotAcademico-frontend.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/devpaulojr/Angular.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/marianoj8/litroft-dev-mono.git,8,Backend Detectado (express),NAO,Clean
+https://github.com/jeremymefford/tfgql.git,4,Backend Detectado (fastify),SIM,"[DANGEROUS_CORS] Configuração 'origin: true' detectada em index.ts"
+https://github.com/AgostinaHeinzmann/tfg.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/AlexisPiramide/BackEnd-TFG.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/viindeel/TFG.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/Trino11/TFG-Backend-API_REST.git,1,Backend Detectado (express),SIM,"[DANGEROUS_CORS] Configuração 'origin: *' detectada em index.ts"
+https://github.com/Trino11/TFG-Backend_Auth-API_REST.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/javier-gomariz-prats/PokeCore.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] apiKey encontrado com valor fixo em app.module.ts"
+https://github.com/javier-gomariz-prats/PokeCore.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] apiKey encontrado com valor fixo em app.module.ts"
+https://github.com/javier-gomariz-prats/PokeCore.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] apiKey encontrado com valor fixo em app.module.ts"
+https://github.com/rauumartinez03/TFG-backend.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/PabloGonzalezGonzalez/tfg-iaas-backend.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/LucasSeraggi/TFG-Backend.git,3,Backend Detectado (express),NAO,Clean
+https://github.com/tanafc/tfg-backend.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/Siname22/TFG_booksGallery-Front-.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/jpicatos/tfg-angular.git,2,Backend Detectado (express),NAO,Clean
+https://github.com/joaoecsde/kademlia_tese.git,1,Backend Detectado (express),SIM,"[DANGEROUS_CORS] Configuração 'origin: *' detectada em app.ts"
+https://github.com/ronydevdesgn/swcs-backend.git,2,Backend Detectado (fastify),NAO,Clean
+https://github.com/nirewen/uni-auto.git,5,Backend Detectado (express),NAO,Clean
+https://github.com/boxy-smd/deck-api.git,1,Backend Detectado (fastify),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em create-and-authenticate-students.ts"
+https://github.com/boxy-smd/deck-api.git,1,Backend Detectado (fastify),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em create-and-authenticate-students.ts"
+https://github.com/boxy-smd/deck-api.git,1,Backend Detectado (fastify),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em register.controller.e2e-spec.ts"
+https://github.com/boxy-smd/deck-api.git,1,Backend Detectado (fastify),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em login.controller.e2e-spec.ts"
+https://github.com/boxy-smd/deck-api.git,1,Backend Detectado (fastify),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em login.controller.e2e-spec.ts"
+https://github.com/ciriatico/EasySIGAA.git,1,Backend Detectado (mongoose),NAO,Clean
+https://github.com/Elian-beep/code-scratch-back.git,1,Backend Detectado (express),SIM,"[DANGEROUS_CORS] Configuração 'origin: *' detectada em server.ts"
+https://github.com/davsilvam/ao-mosso-ufc-api.git,1,Backend Detectado (fastify),NAO,Clean
+https://github.com/Luco97/stock-gql.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/guilhermeaugvieira/MarvelBD2.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em Data-Source.ts"
+https://github.com/denisquintasluiz/Fiscalizacao-aluno-ustp.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/mwenyo/mb-eventos.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/mateusxxlima/fisio-backend.git,1,Backend Detectado (express),SIM,"[TYPEORM_SYNC] Configuração 'synchronize: true' detectada em typeorm.config.ts"
+https://github.com/mateusxxlima/fisio-backend.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] secret encontrado com valor fixo em auth.module.ts"
+https://github.com/GustavoSantosCS/command-backend.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/diegoarmandoo/ecommerce-node-api.git,9,Backend Detectado (express),NAO,Clean
+https://github.com/Sans-arch/gamehub-backend.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em userService.ts"
+https://github.com/Sans-arch/gamehub-backend.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em userService.ts"
+https://github.com/Jao-Rocha/onebitflix.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em index.ts"
+https://github.com/Vimlm/sistema-academico.git,2,Backend Detectado (express),NAO,Clean
+https://github.com/santialvarez0207/WorldLO.git,4,Backend Detectado (express),NAO,Clean
+https://github.com/ProgramacionISFDyT57/avance-academico.git,3,Backend Detectado (express),SIM,"[DANGEROUS_CORS] Configuração 'origin: true' detectada em index.ts"
+https://github.com/viniciusme/api-rest-crud-nodejs-mongodb.git,2,Backend Detectado (express),NAO,Clean
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryUserRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryUserRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryUserRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryUserRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryEventRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryEventRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryEventRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/luissimas/pooa-grupos-academicos.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em memoryAcademicGroupRepository.ts"
+https://github.com/costarodrigo22/backendProjectBeds.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/lucascost/referencias.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/Hyagobsantos/Api-LojaStarWars.git,1,Backend Detectado (express),SIM,"[HARDCODED_SECRET] secret encontrado com valor fixo em jwt.constants.ts"
+https://github.com/NessKawl/API_driveparts.git,1,Backend Detectado (express),SIM,"[DANGEROUS_CORS] Configuração 'origin: *' detectada em main.ts"
+https://github.com/GabrielMartinsDoliveira/Residencia_PD_25.2_backend.git,1,Backend Detectado (express),SIM,"[TYPEORM_SYNC] Configuração 'synchronize: true' detectada em data-source.ts"
+https://github.com/GuilhermeFranciscoPereira/Eventos_Fatec_Itu-Back-End.git,2,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em app.e2e-spec.ts"
+https://github.com/GuilhermeFranciscoPereira/Eventos_Fatec_Itu-Back-End.git,2,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em app.e2e-spec.ts"
+https://github.com/GuilhermeFranciscoPereira/Eventos_Fatec_Itu-Back-End.git,2,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em app.e2e-spec.ts"
+https://github.com/GuilhermeFranciscoPereira/Eventos_Fatec_Itu-Back-End.git,2,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em app.e2e-spec.ts"
+https://github.com/GuilhermeFranciscoPereira/Eventos_Fatec_Itu-Back-End.git,2,Backend Detectado (express),SIM,"[HARDCODED_SECRET] password encontrado com valor fixo em app.e2e-spec.ts"
+https://github.com/matteusmanoel/granaguru-frontend.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/MarqueaneSouza/controle-estoque.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/PieperChristian/Bercario-CRUD.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/qeitiof/securecel.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/douglaswenzel/desenvolvimento-web-3.git,2,Backend Detectado (express),NAO,Clean
+https://github.com/CarlosNiz/atividade-faculdade-backend.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/vitormendes09/Backend-TestesAutomatizados.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/diname/tech-challenge-fiap.git,3,Backend Detectado (express),SIM,"[TYPEORM_SYNC] Configuração 'synchronize: true' detectada em postgres.config.service.ts"
+https://github.com/JhonyDomingos/backend-just-connect.git,2,Backend Detectado (express),NAO,Clean
+https://github.com/PoisonRose/Persona4-projeto.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/MiguelBaricelli/monitorar_consumo_de_agua.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/joaopabdala/site-traducao.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/CyberNicky/customers-api.git,1,Backend Detectado (express),NAO,Clean
+https://github.com/KayoGuilherme/API-CORTE-ENEM-NESTJS.git,1,Backend Detectado (express),NAO,Clean

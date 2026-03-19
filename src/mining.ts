@@ -9,30 +9,37 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN
 const OUTPUT_FILE = path.join(__dirname, "repositorios_selecionados.csv");
 
 const SEARCH_QUERIES = [
-    // tópicos específicos
-    "topic:tcc language:TypeScript",
-    "topic:trabalho de conclusao de curso language:TypeScript",
-    "topic:trabalho de fim de graduacao language:TypeScript",
-    "topic:tfg language:TypeScript",
-    "topic:tese language:TypeScript",
-    "topic:monografia language:TypeScript",
-    "topic:universidade language:TypeScript",
-    "topic:academico language:TypeScript",
-    "topic:faculdade language:TypeScript",
-
-    // busca livre
-    '"trabalho de conclusao de curso" language:TypeScript',
-    '"projeto final" universidade language:TypeScript',
-    '"academico" language:TypeScript',
-    '"monografia" language:TypeScript',
-    '"trabalho de fim de graduacao" language:TypeScript',
-    '"tfg" language:TypeScript',
-    '"tese" language:TypeScript',
-    '"monografia" language:TypeScript',
-    '"universidade" language:TypeScript',
-    '"academico" language:TypeScript',
-    '"faculdade" language:TypeScript'
+    "topic:tcc",
+    "topic:tfg",
+    "topic:tese",
+    "topic:monografia",
+    "topic:universidade",
+    "topic:academico",
+    "topic:faculdade",
+    'topic:curso',
+    'topic:disciplina',
+    'topic:materia',
+    '"trabalho de conclusao de curso"',
+    '"projeto final" universidade',
+    '"academico"',
+    '"monografia"',
+    '"trabalho de fim de graduacao"',
+    '"tfg"',
+    '"tese"',
+    '"monografia"',
+    '"universidade"',
+    '"academico"',
+    '"faculdade"',
+    '"programacao web"',
+    '"disciplina"',
+    '"desenvolvimento web"',
+    '"curso"',
+    '"sistemas web"',
+    '"sistemas de informacao"',
+    '"ciencia da computacao"',
+    '"desenvolvimento de software"'
 ];
+
 
 const BACKEND_INDICATORS = [
     "express",
@@ -42,7 +49,11 @@ const BACKEND_INDICATORS = [
     "typeorm",
     "prisma",
     "mongoose",
-    "sequelize"
+    "sequelize",
+    "passport",
+    "socket.io-client",
+    "@symfony/webpack-encore", "symfony/webpack-encore",
+    "hono"
 ];
 
 const MAX_CHECK_PER_QUERY = 100;
@@ -114,6 +125,8 @@ async function main() {
 
     const processedIds = new Set<number>();
 
+
+    // TODO: arrumar o search queries pra add o language javascript e typescript
     for (const query of SEARCH_QUERIES) {
         console.log(`\n---> Buscando por: '${query}'`);
 

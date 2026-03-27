@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "mining": "ts-node src/mining.ts",
-    "start": "ts-node src/main.ts"
+    "start": "ts-node src/main.ts",
+    "audit": "ts-node src/audit.ts"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,10 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "cli-highlight": "^2.1.11",
+    "csv-parser": "^3.2.0",
     "dotenv": "^17.2.3",
+    "enquirer": "^2.4.1",
     "glob": "^13.0.0",
     "hono": "^4.12.8",
     "octokit": "^5.0.5",

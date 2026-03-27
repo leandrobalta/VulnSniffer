@@ -5,123 +5,100 @@ import * as path from "path";
 import * as readline from "readline";
 import { glob } from "glob";
 
-
 const INPUT_CSV = path.join(__dirname, "repositorios_selecionados.csv");
-const OUTPUT_CSV = path.join(__dirname, "resultados_analise_nativo.csv");
+const OUTPUT_CSV = path.join(__dirname, "results_ast_analysis.csv");
 const TEMP_DIR = path.join(__dirname, "temp_repos");
-
-const VULN_PATTERNS = [
-    {
-        id: "DANGEROUS_CORS",
-        description: "CORS permissivo (*)",
-        properties: ["origin"],
-        values: ["*", "true"],
-        checkType: "exact"
-    },
-    {
-        id: "TYPEORM_SYNC",
-        description: "TypeORM synchronize: true",
-        properties: ["synchronize"],
-        values: ["true"],
-        checkType: "exact"
-    },
-    {
-        id: "HARDCODED_SECRET",
-        description: "Segredo chumbado no código",
-        properties: ["secret", "password", "apiKey", "api_key", "privateKey"],
-        checkType: "hardcoded_string" 
-    },
-    {
-        id: "DEBUG_MODE",
-        description: "Modo debug ativado",
-        properties: ["debug"],
-        values: ["true"],
-        checkType: "exact"
-    }
-];
-
 
 const git = simpleGit();
 
-const removeDir = (dirPath: string) => {
-    if (fs.existsSync(dirPath)) {
-        fs.rmSync(dirPath, { recursive: true, force: true });
+interface Finding {
+    type: string;
+    description: string;
+    line: number;
+}
+
+class VulnerabilityScanner {
+    private findings: Finding[] = [];
+    private sourceFile: ts.SourceFile;
+
+    constructor(sourceFile: ts.SourceFile) {
+        this.sourceFile = sourceFile;
     }
-};
 
-function visitNode(node: ts.Node, sourceFile: ts.SourceFile, findings: string[], filePath: string) {
-    
-    if (ts.isPropertyAssignment(node)) {
-        const nameNode = node.name;
-        let propName = "";
+    public scan(): Finding[] {
+        this.visit(this.sourceFile);
+        return this.findings;
+    }
 
-        if (ts.isIdentifier(nameNode) || ts.isStringLiteral(nameNode)) {
-            propName = nameNode.text;
+    private addFinding(node: ts.Node, type: string, description: string) {
+        const { line } = this.sourceFile.getLineAndCharacterOfPosition(node.getStart());
+        this.findings.push({ type, description, line: line + 1 });
+    }
+
+    private isHardcoded(node: ts.Node): boolean {
+        // Checks if it's a raw string and NOT an environment variable access
+        if (ts.isStringLiteral(node)) {
+            const text = node.text.toLowerCase();
+            return !text.includes("process.env") && text.length > 3;
+        }
+        return false;
+    }
+
+    private visit(node: ts.Node) {
+        // 1. Check Property Assignments (Objects, Config files, TypeORM)
+        if (ts.isPropertyAssignment(node)) {
+            const propName = node.name.getText(this.sourceFile).replace(/['"`]/g, "");
+            const initializer = node.initializer;
+            const value = initializer.getText(this.sourceFile).replace(/['"`]/g, "");
+
+            // Hardcoded Secrets
+            const sensitiveKeys = ["secret", "password", "apikey", "jwt", "token"];
+            if (sensitiveKeys.some(key => propName.toLowerCase().includes(key)) && this.isHardcoded(initializer)) {
+                this.addFinding(node, "HARDCODED_SECRET", `Potential hardcoded secret in property: ${propName}`);
+            }
+
+            // Database & Debug Misconfigs
+            if (propName === "synchronize" && value === "true") {
+                this.addFinding(node, "DB_AUTO_SYNC", "Database synchronization enabled (Risk of data loss)");
+            }
+            if (propName === "debug" && value === "true") {
+                this.addFinding(node, "DEBUG_MODE_ON", "Debug mode enabled in configuration");
+            }
         }
 
-        const initializer = node.initializer;
-        
-        const valueText = initializer.getText(sourceFile).replace(/['"`]/g, ""); 
+        // 2. Check Function Calls (Express/NestJS Middlewares)
+        if (ts.isCallExpression(node)) {
+            const callText = node.expression.getText(this.sourceFile);
 
-        VULN_PATTERNS.forEach(pattern => {
-            if (pattern.properties.includes(propName)) {
-                
-                if (pattern.checkType === "hardcoded_string") {
-                    if (ts.isStringLiteral(initializer) && !valueText.includes("env")) {
-                        if (valueText.length > 5) { 
-                            findings.push(`[${pattern.id}] ${propName} encontrado com valor fixo em ${path.basename(filePath)}`);
-                        }
-                    }
-                }
-                
-                else if (pattern.values && pattern.values.includes(valueText)) {
-                    if (
-                        initializer.kind === ts.SyntaxKind.TrueKeyword || 
-                        ts.isStringLiteral(initializer)
-                    ) {
-                        findings.push(`[${pattern.id}] Configuração '${propName}: ${valueText}' detectada em ${path.basename(filePath)}`);
-                    }
+            // Insecure CORS
+            if (callText.includes("cors") || callText.includes("enableCors")) {
+                const args = node.arguments;
+                if (args.length === 0 || args.some(arg => arg.getText(this.sourceFile).includes("*"))) {
+                    this.addFinding(node, "INSECURE_CORS", "Permissive CORS policy (Wildcard detected)");
                 }
             }
-        });
+        }
+
+        // 3. Check New Expressions (NestJS Pipes)
+        if (ts.isNewExpression(node)) {
+            const className = node.expression.getText(this.sourceFile);
+            if (className === "ValidationPipe") {
+                const arg = node.arguments?.[0];
+                if (!arg || !arg.getText(this.sourceFile).includes("whitelist: true")) {
+                    this.addFinding(node, "NESTJS_MASS_ASSIGNMENT", "ValidationPipe missing 'whitelist: true'");
+                }
+            }
+        }
+
+        ts.forEachChild(node, (child) => this.visit(child));
     }
-
-    ts.forEachChild(node, (child) => visitNode(child, sourceFile, findings, filePath));
 }
-
-function scanFile(filePath: string): string[] {
-    const findings: string[] = [];
-    
-    try {
-        const fileContent = fs.readFileSync(filePath, "utf-8");
-        
-        const sourceFile = ts.createSourceFile(
-            filePath,
-            fileContent,
-            ts.ScriptTarget.Latest, // Versão do ECMA
-            true // setParentNodes (útil se precisarmos subir na árvore, mas consome mais memória)
-        );
-
-        visitNode(sourceFile, sourceFile, findings, filePath);
-        
-    } catch (err) {
-        console.error(`Erro ao ler arquivo ${filePath}:`, err);
-    }
-    
-    return findings;
-}
-
 
 async function main() {
-    console.log("=== Iniciando VulnSniffer - Análise AST Nativa ===");
-
-    if (!fs.existsSync(INPUT_CSV)) {
-        console.error(`Arquivo de entrada não encontrado: ${INPUT_CSV}`);
-        return;
-    }
+    console.log("=== Starting VulnSniffer - Unified AST Analysis ===");
 
     if (!fs.existsSync(OUTPUT_CSV)) {
-        fs.writeFileSync(OUTPUT_CSV, "RepoURL,Stars,Framework,Vulnerabilidade,Detalhes\n");
+        fs.writeFileSync(OUTPUT_CSV, "Repo,URL,File,Line,Type,Description\n");
     }
 
     const fileStream = fs.createReadStream(INPUT_CSV);
@@ -130,65 +107,44 @@ async function main() {
     let headerSkipped = false;
 
     for await (const line of rl) {
-        if (!headerSkipped) {
-            headerSkipped = true;
-            continue;
-        }
+        if (!headerSkipped) { headerSkipped = true; continue; }
 
         const cols = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-        const repoName = cols[0];
-        const repoUrl = cols[1];
-        const stars = cols[2];
-        const framework = cols[3];
+        const [repoName, repoUrl] = [cols[0], cols[1]];
 
         if (!repoUrl || !repoUrl.startsWith("http")) continue;
 
-        console.log(`\n>>> Analisando: ${repoName}`);
         const localPath = path.join(TEMP_DIR, repoName.replace("/", "_"));
 
         try {
-            removeDir(localPath);
+            if (fs.existsSync(localPath)) fs.rmSync(localPath, { recursive: true, force: true });
             await git.clone(repoUrl, localPath, ["--depth", "1"]);
 
             const tsFiles = await glob(`${localPath}/**/*.ts`, { 
-                ignore: [
-                    '**/node_modules/**', 
-                    '**/*.spec.ts', 
-                    '**/*.test.ts', 
-                    '**/*.d.ts'
-                ],
-                windowsPathsNoEscape: true 
+                ignore: ['**/node_modules/**', '**/*.spec.ts', '**/*.test.ts', '**/*.d.ts'] 
             });
 
-            console.log(`   Arquivos encontrados: ${tsFiles.length}`);
-            let vulnFound = false;
-
             for (const file of tsFiles) {
-                const issues = scanFile(file);
+                const content = fs.readFileSync(file, "utf-8");
+                const sourceFile = ts.createSourceFile(file, content, ts.ScriptTarget.Latest, true);
                 
-                if (issues.length > 0) {
-                    vulnFound = true;
-                    for (const issue of issues) {
-                        console.log(`   ⚠️  ${issue}`);
-                        const csvLine = `${repoUrl},${stars},${framework},SIM,"${issue.replace(/"/g, "'")}"\n`;
-                        fs.appendFileSync(OUTPUT_CSV, csvLine);
-                    }
-                }
-            }
+                const scanner = new VulnerabilityScanner(sourceFile);
+                const results = scanner.scan();
 
-            if (!vulnFound) {
-                const csvLine = `${repoUrl},${stars},${framework},NAO,Clean\n`;
-                fs.appendFileSync(OUTPUT_CSV, csvLine);
+                results.forEach(issue => {
+                    const relativePath = path.relative(localPath, file);
+                    console.log(`   ⚠️  [${issue.type}] in ${repoName}: ${relativePath}:${issue.line}`);
+                    const csvLine = `"${repoName}","${repoUrl}","${relativePath}",${issue.line},"${issue.type}","${issue.description}"\n`;
+                    fs.appendFileSync(OUTPUT_CSV, csvLine);
+                });
             }
-
-        } catch (error: any) {
-            console.error(`   ❌ Erro: ${error.message}`);
+        } catch (err: any) {
+            console.error(`   ❌ Error processing ${repoName}: ${err.message}`);
         } finally {
-            removeDir(localPath);
+            if (fs.existsSync(localPath)) fs.rmSync(localPath, { recursive: true, force: true });
         }
     }
-    
-    console.log("\n=== Finalizado ===");
+    console.log("\n=== Analysis Finished ===");
 }
 
 main();

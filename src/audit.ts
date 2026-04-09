@@ -6,14 +6,42 @@ import { highlight } from "cli-highlight";
 //import { Select } from "enquirer";
 import { prompt } from "enquirer";
 
-const INPUT_CSV = "src/results_ast_analysis.csv";
-const VALIDATED_CSV = "src/validated_vulnerabilities.csv";
+console.log(__dirname)
+
+const INPUT_CSV = path.join(__dirname, "../csv/results_ast_analysis.csv");
+const VALIDATED_CSV = path.join(__dirname, "../csv/results_audit.csv");
 const TEMP_DIR = path.join(__dirname, "audit_repos");
 
 const git = simpleGit();
 
 if (!fs.existsSync(VALIDATED_CSV)) {
     fs.writeFileSync(VALIDATED_CSV, "Repo,File,Line,Type,Description,Status,ReviewerNote\n");
+}
+
+/**
+ * Carrega registros já auditados do CSV para evitar retrabalho
+ */
+function getAuditedRecords(): Set<string> {
+    const auditedSet = new Set<string>();
+    
+    if (fs.existsSync(VALIDATED_CSV)) {
+        const content = fs.readFileSync(VALIDATED_CSV, "utf-8");
+        const lines = content.split("\n");
+        
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+            
+            const match = line.match(/"([^"]+)","([^"]+)",(\d+),"([^"]+)"/);
+            if (match) {
+                const [, repo, file, lineNum, type] = match;
+                const key = `${repo}|${file}|${lineNum}|${type}`;
+                auditedSet.add(key);
+            }
+        }
+    }
+    
+    return auditedSet;
 }
 
 /**
@@ -45,34 +73,56 @@ function getFullFileWithMarker(filePath: string, targetLine: number): string {
 
 async function startAudit() {
     const records: any[] = [];
+    const auditedRecords = getAuditedRecords();
+    let skippedCount = 0;
+    
     console.log("--- Loading findings for manual review ---");
 
     fs.createReadStream(INPUT_CSV)
         .pipe(csv())
         .on("data", (data) => records.push(data))
         .on("end", async () => {
+            const totalRecords = records.length;
+            let processedCount = 0;
+
             for (const record of records) {
                 const { Repo, URL, File, Line, Type, Description } = record;
+                const recordKey = `${Repo}|${File}|${Line}|${Type}`;
+                
+                // Pula se já foi auditado
+                if (auditedRecords.has(recordKey)) {
+                    skippedCount++;
+                    console.log(`⏭️  [${Repo}] SKIP - Already audited: ${File}:${Line} (${Type})`);
+                    continue;
+                }
+
                 const repoPath = path.join(TEMP_DIR, Repo.replace("/", "_"));
                 const lineNum = parseInt(Line);
+                processedCount++;
 
                 try {
                     // 1. Clonagem (se necessário)
                     if (!fs.existsSync(repoPath)) {
-                        console.log(`\nDownloading ${Repo}...`);
+                        console.log(`\n📥 [${Repo}] Downloading repository...`);
                         await git.clone(URL, repoPath, ["--depth", "1"]);
                     }
 
                     // --- PASSO 1: CONTEXTO DO PROJETO ---
                     console.clear();
                     console.log(`\n================================================================`);
-                    console.log(`STEP 1: PROJECT CONTEXT - ${Repo}`);
-                    console.log(`CSV Description: ${Description || "N/A"}`);
+                    console.log(`📋 STEP 1: PROJECT CONTEXT`);
+                    console.log(`Repository: ${Repo}`);
+                    console.log(`Finding ${processedCount}/${totalRecords - skippedCount}`);
                     console.log(`================================================================\n`);
                     
+                    console.log(`🔍 Finding Details:`);
+                    console.log(`   Type: ${Type}`);
+                    console.log(`   Location: ${File}:${Line}`);
+                    console.log(`   Description: ${Description || "N/A"}\n`);
+                    
                     const readme = getReadme(repoPath);
-                    console.log("--- README.md ---");
-                    // Mostra apenas os primeiros 1000 caracteres do README para não inundar o terminal
+                    console.log("--- 📖 README.md ---");
+                    // Mostra apenas os primeiros 1500 caracteres do README para não inundar o terminal
                     console.log(readme.substring(0, 1500) + (readme.length > 1500 ? "\n... (truncated)" : ""));
                     
                     await prompt({
@@ -85,7 +135,8 @@ async function startAudit() {
                     // --- PASSO 2: ANÁLISE DO CÓDIGO ---
                     console.clear();
                     console.log(`\n================================================================`);
-                    console.log(`STEP 2: CODE ANALYSIS`);
+                    console.log(`🔎 STEP 2: CODE ANALYSIS`);
+                    console.log(`Repository: ${Repo}`);
                     console.log(`FILE: ${File} | LINE: ${Line}`);
                     console.log(`VULN TYPE: ${Type}`);
                     console.log(`================================================================\n`);
@@ -101,7 +152,7 @@ async function startAudit() {
                         const response = await prompt<{ status: string }>({
                             type: 'select',
                             name: 'status',
-                            message: 'Final Classification:',
+                            message: `[${Repo}] Final Classification:`,
                             choices: [
                                 { name: 'CORRETO', message: '✅ Correto (É uma vulnerabilidade)' },
                                 { name: 'INCORRETO', message: '❌ Incorreto (Falso positivo/Não é vulnerabilidade)' },
@@ -116,17 +167,26 @@ async function startAudit() {
                         if (status !== 'SKIP') {
                             const csvLine = `"${Repo}","${File}",${Line},"${Type}","${Description}","${status}","Manual audit done"\n`;
                             fs.appendFileSync(VALIDATED_CSV, csvLine);
+                            console.log(`\n✅ [${Repo}] Saved as: ${status}`);
+                        } else {
+                            console.log(`\n⏭️  [${Repo}] Skipped by user`);
                         }
                     } else {
-                        console.log("File not found locally.");
+                        console.log(`❌ [${Repo}] File not found locally: ${fullPath}`);
                         await new Promise(r => setTimeout(r, 2000));
                     }
 
                 } catch (err: any) {
-                    console.error(`Error auditing ${Repo}: ${err.message}`);
+                    console.error(`❌ [${Repo}] Error auditing: ${err.message}`);
                 }
             }
-            console.log("\n=== Audit Session Finished ===");
+            
+            console.log("\n================================================================");
+            console.log(`✨ Audit Session Finished`);
+            console.log(`Total findings: ${totalRecords}`);
+            console.log(`Already audited (skipped): ${skippedCount}`);
+            console.log(`Processed in this session: ${processedCount}`);
+            console.log(`================================================================`);
         });
 }
 

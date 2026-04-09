@@ -5,8 +5,10 @@ import * as path from "path";
 import * as readline from "readline";
 import { glob } from "glob";
 
-const INPUT_CSV = path.join(__dirname, "repositorios_selecionados.csv");
-const OUTPUT_CSV = path.join(__dirname, "results_ast_analysis.csv");
+console.log(__dirname)
+
+const INPUT_CSV = path.join(__dirname, "csv/results_mining.csv");
+const OUTPUT_CSV = path.join(__dirname, "csv/results_ast_analysis.csv");
 const TEMP_DIR = path.join(__dirname, "temp_repos");
 
 const git = simpleGit();

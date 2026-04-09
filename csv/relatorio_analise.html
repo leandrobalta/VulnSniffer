@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VulnSniffer - Análise de Resultados</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .metric-card.mining {
+            border-left-color: #3498db;
+        }
+        
+        .metric-card.ast {
+            border-left-color: #e74c3c;
+        }
+        
+        .metric-card.audit {
+            border-left-color: #f39c12;
+        }
+        
+        .metric-title {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .metric-subtitle {
+            color: #999;
+            font-size: 0.85em;
+            margin-top: 8px;
+        }
+        
+        .section {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .section h3 {
+            color: #333;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .stat-list li {
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+        }
+        
+        .stat-label {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .stat-value {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 3px;
+        }
+        
+        .status-correto {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-incorreto {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status-nao-aplica {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+        
+        .status-depende {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .insights {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .insight-title {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .insight-text {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .chart-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .chart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .chart-title {
+            color: #667eea;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        thead {
+            background: #667eea;
+            color: white;
+        }
+        
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .recommendation {
+            background: #e8f4f8;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .recommendation-title {
+            color: #3498db;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>📊 VulnSniffer - Análise Completa de Resultados</h1>
+            <p class="subtitle">Pipeline de Detecção e Análise de Vulnerabilidades em Repositórios TypeScript</p>
+        </header>
+
+        <!-- Métricas Principais -->
+        <div class="metrics-grid">
+            <div class="metric-card mining">
+                <div class="metric-title">Mining</div>
+                <div class="metric-value">238</div>
+                <div class="metric-subtitle">Repositórios Selecionados</div>
+            </div>
+            
+            <div class="metric-card ast">
+                <div class="metric-title">AST Analysis</div>
+                <div class="metric-value">239</div>
+                <div class="metric-subtitle">Vulnerabilidades Encontradas</div>
+            </div>
+            
+            <div class="metric-card audit">
+                <div class="metric-title">Audit Manual</div>
+                <div class="metric-value">191</div>
+                <div class="metric-subtitle">Vulnerabilidades Auditadas</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">Acurácia</div>
+                <div class="metric-value">33.5%</div>
+                <div class="metric-subtitle">Verdadeiros Positivos</div>
+            </div>
+        </div>
+
+        <!-- Seção 1: Visão Geral do Pipeline -->
+        <div class="section">
+            <h2>🔄 Visão Geral do Pipeline</h2>
+            
+            <div class="insights">
+                <div class="insight-title">O Pipeline de Análise</div>
+                <div class="insight-text">
+                    O VulnSniffer trabalha em 3 estágios principais: <br>
+                    <strong>1. Mining</strong> (238 repositórios) → <strong>2. AST Analysis</strong> (239 vulnerabilidades) → <strong>3. Audit Manual</strong> (191 analisadas)
+                </div>
+            </div>
+
+            <h3>📊 Estatísticas de Filtro</h3>
+            <ul class="stat-list">
+                <li>
+                    <span class="stat-label">Repositórios Selecionados (Mining)</span>
+                    <span class="stat-value">238</span>
+                </li>
+                <li>
+                    <span class="stat-label">Repositórios com Vulnerabilidades</span>
+                    <span class="stat-value">73 (30.7%)</span>
+                </li>
+                <li>
+                    <span class="stat-label">Repositórios sem Vulnerabilidades</span>
+                    <span class="stat-value">165 (69.3%)</span>
+                </li>
+                <li>
+                    <span class="stat-label">Vulnerabilidades Encontradas (AST)</span>
+                    <span class="stat-value">239</span>
+                </li>
+                <li>
+                    <span class="stat-label">Vulnerabilidades Auditadas</span>
+                    <span class="stat-value">191 (80.0%)</span>
+                </li>
+            </ul>
+
+            <div class="chart-container">
+                <div class="chart-title">Gráficos da Análise - Página 1</div>
+                <img src="analise_completa_1.png" alt="Análise Completa - Página 1">
+            </div>
+        </div>
+
+        <!-- Seção 2: Análise Detalhada -->
+        <div class="section">
+            <h2>🎯 Análise Detalhada de Vulnerabilidades</h2>
+
+            <h3>Tipos de Vulnerabilidades Encontradas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de Vulnerabilidade</th>
+                        <th>Quantidade</th>
+                        <th>Percentual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HARDCODED_SECRET</td>
+                        <td>123</td>
+                        <td>51.5%</td>
+                    </tr>
+                    <tr>
+                        <td>INSECURE_CORS</td>
+                        <td>72</td>
+                        <td>30.1%</td>
+                    </tr>
+                    <tr>
+                        <td>NESTJS_MASS_ASSIGNMENT</td>
+                        <td>27</td>
+                        <td>11.3%</td>
+                    </tr>
+                    <tr>
+                        <td>DB_AUTO_SYNC</td>
+                        <td>17</td>
+                        <td>7.1%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Resultado da Auditoria Manual</h3>
+            <div class="grid-2">
+                <div>
+                    <ul class="stat-list">
+                        <li>
+                            <span class="stat-label"><span class="status-badge status-incorreto">❌ INCORRETO</span></span>
+                            <span class="stat-value">86 (45.0%)</span>
+                        </li>
+                        <li>
+                            <span class="stat-label"><span class="status-badge status-correto">✅ CORRETO</span></span>
+                            <span class="stat-value">64 (33.5%)</span>
+                        </li>
+                        <li>
+                            <span class="stat-label"><span class="status-badge status-nao-aplica">⏹️ NAO_SE_APLICA</span></span>
+                            <span class="stat-value">40 (20.9%)</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="insights">
+                        <div class="insight-title">Análise de Resultados</div>
+                        <div class="insight-text">
+                            • Verdadeiros Positivos: 33.5%<br>
+                            • Falsos Positivos: 45.0%<br>
+                            • Fora do Escopo: 20.9%
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-title">Gráficos da Análise - Página 2</div>
+                <img src="analise_completa_2.png" alt="Análise Completa - Página 2">
+            </div>
+        </div>
+
+        <!-- Seção 3: Análise por Tipo -->
+        <div class="section">
+            <h2>📈 Acurácia por Tipo de Vulnerabilidade</h2>
+
+            <h3>INSECURE_CORS</h3>
+            <ul class="stat-list">
+                <li>
+                    <span class="stat-label"><span class="status-badge status-correto">Confirmado</span></span>
+                    <span class="stat-value">29 (56.9%)</span>
+                </li>
+                <li>
+                    <span class="stat-label"><span class="status-badge status-nao-aplica">Fora do Escopo</span></span>
+                    <span class="stat-value">17 (33.3%)</span>
+                </li>
+                <li>
+                    <span class="stat-label"><span class="status-badge status-incorreto">Falso Positivo</span></span>
+                    <span class="stat-value">5 (9.8%)</span>
+                </li>
+            </ul>
+
+            <h3>HARDCODED_SECRET</h3>
+            <ul class="stat-list">
+                <li>
+                    <span class="stat-label"><span class="status-badge status-incorreto">Falso Positivo</span></span>
+                    <span class="stat-value">78 (76.5%)</span>
+                </li>
+                <li>
+                    <span class="stat-label"><span class="status-badge status-nao-aplica">Fora do Escopo</span></span>
+                    <span class="stat-value">16 (15.7%)</span>
+                </li>
+                <li>
+                    <span class="stat-label"><span class="status-badge status-correto">Confirmado</span></span>
+                    <span class="stat-value">8 (7.8%)</span>
+                </li>
+            </ul>
+
+            <div class="insights">
+                <div class="insight-title">⚠️ Aviso: Alta Taxa de Falsos Positivos em HARDCODED_SECRET</div>
+                <div class="insight-text">
+                    76.5% das detecções de hardcoded secrets são falsos positivos, principalmente em dados de teste/mock. 
+                    Recomenda-se melhorar os filtros do scanner para excluir arquivos de teste e environments.
+                </div>
+            </div>
+
+            <h3>NESTJS_MASS_ASSIGNMENT</h3>
+            <ul class="stat-list">
+                <li>
+                    <span class="stat-label"><span class="status-badge status-correto">Confirmado</span></span>
+                    <span class="stat-value">15 (65.2%)</span>
+                </li>
+                <li>
+                    <span class="stat-label"><span class="status-badge status-nao-aplica">Fora do Escopo</span></span>
+                    <span class="stat-value">7 (30.4%)</span>
+                </li>
+                <li>
+                    <span class="stat-label"><span class="status-badge status-incorreto">Falso Positivo</span></span>
+                    <span class="stat-value">1 (4.3%)</span>
+                </li>
+            </ul>
+
+            <h3>DB_AUTO_SYNC</h3>
+            <ul class="stat-list">
+                <li>
+                    <span class="stat-label"><span class="status-badge status-correto">Confirmado</span></span>
+                    <span class="stat-value">12 (85.7%)</span>
+                </li>
+                <li>
+                    <span class="stat-label"><span class="status-badge status-incorreto">Falso Positivo</span></span>
+                    <span class="stat-value">2 (14.3%)</span>
+                </li>
+            </ul>
+
+            <div class="insights">
+                <div class="insight-title">✅ DB_AUTO_SYNC é o detector mais confiável</div>
+                <div class="insight-text">
+                    Com 85.7% de acurácia, a detecção de sincronização automática de banco de dados é muito confiável. 
+                    Recomenda-se priorizar a correção desses achados.
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 4: Recomendações -->
+        <div class="section">
+            <h2>💡 Recomendações e Insights</h2>
+
+            <h3>✅ Pontos Positivos</h3>
+            <div class="recommendation">
+                <div class="recommendation-title">1. Detecção Confiável de DB_AUTO_SYNC (85.7%)</div>
+                Sincronização automática de banco de dados é um risco real que requer atenção imediata.
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">2. Bom Desempenho em NESTJS_MASS_ASSIGNMENT (65.2%)</div>
+                A detecção de vulnerabilidade de mass assignment em NestJS valida bem.
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">3. INSECURE_CORS Detectado com Razoável Acurácia (56.9%)</div>
+                Mais da metade dos achados são reais, indicando um problema comum em projetos acadêmicos.
+            </div>
+
+            <h3>⚠️ Pontos de Melhoria</h3>
+            <div class="recommendation" style="background: #ffe8e8; border-left-color: #e74c3c;">
+                <div class="recommendation-title">1. HARDCODED_SECRET tem Alta Taxa de Falsos Positivos (76.5%)</div>
+                <strong>Problema:</strong> Muitas detecções são em dados de teste e mock.<br>
+                <strong>Solução:</strong> 
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Excluir arquivos *.spec.ts, *.test.ts, mock-*.ts</li>
+                    <li>Excluir pastas com padrões "test", "mock", "fixtures"</li>
+                    <li>Melhorar detecção de valores reais vs. dados fictícios</li>
+                </ul>
+            </div>
+
+            <div class="recommendation" style="background: #fff3cd; border-left-color: #f39c12;">
+                <div class="recommendation-title">2. Repositórios Fora do Escopo (20.9%)</div>
+                <strong>Problema:</strong> Alguns achados não se aplicam ao estudo.<br>
+                <strong>Solução:</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Refinar critérios de seleção no Mining</li>
+                    <li>Excluir projetos frontend/frameworks</li>
+                    <li>Focar apenas em backends TypeScript autênticos</li>
+                </ul>
+            </div>
+
+            <h3>📊 Estatísticas Finais</h3>
+            <ul class="stat-list">
+                <li>
+                    <span class="stat-label">Repositórios com Vulnerabilidades Confirmadas</span>
+                    <span class="stat-value">45 (19.4%)</span>
+                </li>
+                <li>
+                    <span class="stat-label">Repositórios com Falsos Positivos</span>
+                    <span class="stat-value">38 (16.4%)</span>
+                </li>
+                <li>
+                    <span class="stat-label">Taxa de Filtro (sem vulnerabilidades)</span>
+                    <span class="stat-value">69.3%</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>VulnSniffer - Análise Automatizada de Segurança em Repositórios TypeScript</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">Gerado em 2026 | Dashboard de Análise Completa</p>
+        </div>
+    </div>
+</body>
+</html>

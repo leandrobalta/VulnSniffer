@@ -5,11 +5,11 @@ import * as path from "path";
 import * as readline from "readline";
 import { glob } from "glob";
 
-console.log(__dirname)
+console.log(__dirname);
 
 const INPUT_CSV = path.join(__dirname, "../csv/results_mining_javascript.csv");
 const OUTPUT_CSV = path.join(__dirname, "../csv/results_ast_analysis_javascript.csv");
-const TEMP_DIR = path.join(__dirname, "temp_repos");
+const TEMP_DIR = path.join(__dirname, "temp_repos_js");
 
 const git = simpleGit();
 
@@ -19,7 +19,7 @@ interface Finding {
     line: number;
 }
 
-class VulnerabilityScanner {
+class JavaScriptVulnerabilityScanner {
     private findings: Finding[] = [];
     private sourceFile: ts.SourceFile;
 
@@ -41,7 +41,7 @@ class VulnerabilityScanner {
         // Checks if it's a raw string and NOT an environment variable access
         if (ts.isStringLiteral(node)) {
             const text = node.text.toLowerCase();
-            return !text.includes("process.env") && text.length > 3;
+            return !text.includes("process.env") && !text.includes("env.") && text.length > 3;
         }
         return false;
     }
@@ -97,7 +97,7 @@ class VulnerabilityScanner {
 }
 
 async function main() {
-    console.log("=== Starting VulnSniffer - Unified AST Analysis ===");
+    console.log("=== Starting VulnSniffer - JavaScript AST Analysis ===");
 
     if (!fs.existsSync(OUTPUT_CSV)) {
         fs.writeFileSync(OUTPUT_CSV, "Repo,URL,File,Line,Type,Description\n");
@@ -107,38 +107,66 @@ async function main() {
     const rl = readline.createInterface({ input: fileStream, crlfDelay: Infinity });
 
     let headerSkipped = false;
+    let totalRepos = 0;
+    let processedRepos = 0;
+    let foundVulnerabilities = 0;
 
     for await (const line of rl) {
         if (!headerSkipped) { headerSkipped = true; continue; }
 
         const cols = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-        const [repoName, repoUrl] = [cols[0], cols[1]];
+        const [repoName, repoUrl] = [cols[0].replace(/^"/, "").replace(/"$/, ""), 
+                                      cols[1].replace(/^"/, "").replace(/"$/, "")];
 
         if (!repoUrl || !repoUrl.startsWith("http")) continue;
 
-        const localPath = path.join(TEMP_DIR, repoName.replace("/", "_"));
+        totalRepos++;
+        const localPath = path.join(TEMP_DIR, repoName.replace(/\//g, "_"));
 
         try {
             if (fs.existsSync(localPath)) fs.rmSync(localPath, { recursive: true, force: true });
+            
+            console.log(`\n📥 [${repoName}] Cloning repository...`);
             await git.clone(repoUrl, localPath, ["--depth", "1"]);
+            processedRepos++;
 
-            const tsFiles = await glob(`${localPath}/**/*.ts`, { 
-                ignore: ['**/node_modules/**', '**/*.spec.ts', '**/*.test.ts', '**/*.d.ts'] 
+            // Buscar arquivos JavaScript e TypeScript
+            const jsFiles = await glob(`${localPath}/**/*.{js,jsx,ts,tsx}`, { 
+                ignore: ['**/node_modules/**', '**/*.spec.ts', '**/*.test.ts', '**/*.spec.js', 
+                        '**/*.test.js', '**/*.d.ts', '**/dist/**', '**/build/**']
             });
 
-            for (const file of tsFiles) {
-                const content = fs.readFileSync(file, "utf-8");
-                const sourceFile = ts.createSourceFile(file, content, ts.ScriptTarget.Latest, true);
-                
-                const scanner = new VulnerabilityScanner(sourceFile);
-                const results = scanner.scan();
+            if (jsFiles.length === 0) {
+                console.log(`   ⚠️  No JavaScript/TypeScript files found`);
+                continue;
+            }
 
-                results.forEach(issue => {
-                    const relativePath = path.relative(localPath, file);
-                    console.log(`   ⚠️  [${issue.type}] in ${repoName}: ${relativePath}:${issue.line}`);
-                    const csvLine = `"${repoName}","${repoUrl}","${relativePath}",${issue.line},"${issue.type}","${issue.description}"\n`;
-                    fs.appendFileSync(OUTPUT_CSV, csvLine);
-                });
+            console.log(`   ✅ Found ${jsFiles.length} files to analyze`);
+
+            for (const file of jsFiles) {
+                try {
+                    const content = fs.readFileSync(file, "utf-8");
+                    const sourceFile = ts.createSourceFile(
+                        file, 
+                        content, 
+                        ts.ScriptTarget.Latest, 
+                        true,
+                        ts.ScriptKind.JS
+                    );
+                    
+                    const scanner = new JavaScriptVulnerabilityScanner(sourceFile);
+                    const results = scanner.scan();
+
+                    results.forEach(issue => {
+                        const relativePath = path.relative(localPath, file);
+                        console.log(`      ⚠️  [${issue.type}] ${relativePath}:${issue.line}`);
+                        const csvLine = `"${repoName}","${repoUrl}","${relativePath}",${issue.line},"${issue.type}","${issue.description}"\n`;
+                        fs.appendFileSync(OUTPUT_CSV, csvLine);
+                        foundVulnerabilities++;
+                    });
+                } catch (fileErr: any) {
+                    console.error(`      ❌ Error analyzing file: ${fileErr.message}`);
+                }
             }
         } catch (err: any) {
             console.error(`   ❌ Error processing ${repoName}: ${err.message}`);
@@ -146,7 +174,15 @@ async function main() {
             if (fs.existsSync(localPath)) fs.rmSync(localPath, { recursive: true, force: true });
         }
     }
-    console.log("\n=== Analysis Finished ===");
+
+    console.log("\n" + "=".repeat(70));
+    console.log("=== JavaScript AST Analysis Finished ===");
+    console.log(`Total Repositories: ${totalRepos}`);
+    console.log(`Successfully Processed: ${processedRepos}`);
+    console.log(`Vulnerabilities Found: ${foundVulnerabilities}`);
+    console.log(`Output CSV: ${OUTPUT_CSV}`);
+    console.log("=".repeat(70));
 }
 
+if (!fs.existsSync(TEMP_DIR)) fs.mkdirSync(TEMP_DIR, { recursive: true });
 main();

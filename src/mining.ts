@@ -6,7 +6,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN
-const OUTPUT_FILE = path.join(__dirname, "repositorios_selecionados.csv");
+const OUTPUT_FILE = path.join(__dirname, "../csv/results_mining_javascript.csv");
 
 const SEARCH_QUERIES = [
     "topic:tcc",
@@ -132,7 +132,7 @@ async function main() {
 
         try {
             const iterator = octokit.paginate.iterator(octokit.rest.search.repos, {
-                q: query + " stars:>0 language:typescript",
+                q: query + " stars:>0 language:javascript",
                 sort: "updated",
                 order: "desc",
                 per_page: 30,

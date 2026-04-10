@@ -14,9 +14,9 @@ plt.rcParams['font.size'] = 10
 BASE_DIR = Path(__file__).parent
 CSV_DIR = BASE_DIR / "csv"
 
-MINING_CSV = CSV_DIR / "results_mining.csv"
-AST_CSV = CSV_DIR / "results_ast_analysis.csv"
-AUDIT_CSV = CSV_DIR / "results_audit.csv"
+MINING_CSV = CSV_DIR / "results_mining_javascript.csv"
+AST_CSV = CSV_DIR / "results_ast_analysis_javascript.csv"
+AUDIT_CSV = CSV_DIR / "results_audit_javascript.csv"
 
 # ==================== CARREGAMENTO DOS DADOS ====================
 print("=" * 80)
@@ -174,8 +174,8 @@ if not ast_df.empty:
                 ha='left', va='center', fontsize=9, fontweight='bold')
 
 plt.tight_layout()
-plt.savefig(CSV_DIR / 'analise_completa_1.png', dpi=300, bbox_inches='tight')
-print("✅ Gráfico 1 salvo: analise_completa_1.png")
+plt.savefig(CSV_DIR / 'analise_completa_1_javascript.png', dpi=300, bbox_inches='tight')
+print("✅ Gráfico 1 salvo: analise_completa_1_javascript.png")
 
 # ==================== SEGUNDA PÁGINA DE GRÁFICOS ====================
 fig, axes = plt.subplots(2, 2, figsize=(16, 12))
@@ -311,8 +311,8 @@ if not audit_df.empty:
                 fontsize=11, fontweight='bold')
 
 plt.tight_layout()
-plt.savefig(CSV_DIR / 'analise_completa_2.png', dpi=300, bbox_inches='tight')
-print("✅ Gráfico 2 salvo: analise_completa_2.png")
+plt.savefig(CSV_DIR / 'analise_completa_2_javascript.png', dpi=300, bbox_inches='tight')
+print("✅ Gráfico 2 salvo: analise_completa_2_javascript.png")
 
 # ==================== RELATÓRIO DETALHADO ====================
 print("\n" + "=" * 80)

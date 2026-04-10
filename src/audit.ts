@@ -8,8 +8,8 @@ import { prompt } from "enquirer";
 
 console.log(__dirname)
 
-const INPUT_CSV = path.join(__dirname, "../csv/results_ast_analysis.csv");
-const VALIDATED_CSV = path.join(__dirname, "../csv/results_audit.csv");
+const INPUT_CSV = path.join(__dirname, "../csv/results_ast_analysis_javascript.csv");
+const VALIDATED_CSV = path.join(__dirname, "../csv/results_audit_javascript.csv");
 const TEMP_DIR = path.join(__dirname, "audit_repos");
 
 const git = simpleGit();

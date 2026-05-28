@@ -132,7 +132,7 @@ async function main() {
 
         try {
             const iterator = octokit.paginate.iterator(octokit.rest.search.repos, {
-                q: query + " stars:>0 language:javascript",
+                q: query + " stars:>0 language:typescript",
                 sort: "updated",
                 order: "desc",
                 per_page: 30,

@@ -1,0 +1,5 @@
+Status,Quantidade,Percentual (%),Descrição
+CORRETO,64,33.5,Vulnerabilidade confirmada (Verdadeiro Positivo)
+INCORRETO,86,45.5,Falso positivo (não é vulnerabilidade)
+NAO_SE_APLICA,40,21,Vulnerabilidade mas fora do escopo
+

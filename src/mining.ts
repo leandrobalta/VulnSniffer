@@ -6,7 +6,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN
-const OUTPUT_FILE = path.join(__dirname, "../csv/results_mining_javascript.csv");
+const OUTPUT_FILE = path.join(__dirname, "../csv/results_mining.csv");
 
 const SEARCH_QUERIES = [
     "topic:tcc",

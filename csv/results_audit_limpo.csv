@@ -1,0 +1,160 @@
+Repo,File,Line,Type,Description,Status,ReviewerNote
+Herick2D/bot-academico,src/server.ts,11.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),NAO_SE_APLICA,
+YasArcher/back-economia,src/app.ts,9.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),NAO_SE_APLICA,Manual audit done
+Trino11/TFG-Backend-API_REST,src/index.ts,53.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),NAO_SE_APLICA,Manual audit done
+Trino11/TFG-Backend_Auth-API_REST,src/index.ts,39.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),NAO_SE_APLICA,Manual audit done
+javier-gomariz-prats/PokeCore,src/app/app.module.ts,43.0,HARDCODED_SECRET,Potential hardcoded secret in property: apiKey,NAO_SE_APLICA,Manual audit done
+javier-gomariz-prats/PokeCore,src/app/app.module.ts,55.0,HARDCODED_SECRET,Potential hardcoded secret in property: apiKey,NAO_SE_APLICA,Manual audit done
+javier-gomariz-prats/PokeCore,src/app/app.module.ts,62.0,HARDCODED_SECRET,Potential hardcoded secret in property: apiKey,NAO_SE_APLICA,Manual audit done
+Luco97/stock-gql,src/main.ts,9.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',NAO_SE_APLICA,Manual audit done
+mwenyo/mb-eventos,src/server.ts,117.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),NAO_SE_APLICA,Manual audit done
+GustavoSantosCS/command-backend,tests/domain/mock/usecases/create-session-usecase-spy.ts,8.0,HARDCODED_SECRET,Potential hardcoded secret in property: token,NAO_SE_APLICA,Manual audit done
+Sans-arch/gamehub-backend,src/tests/services/userService.ts,94.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,NAO_SE_APLICA,Manual audit done
+Sans-arch/gamehub-backend,src/tests/services/userService.ts,109.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,NAO_SE_APLICA,Manual audit done
+santialvarez0207/WorldLO,server/app.ts,17.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),NAO_SE_APLICA,Manual audit done
+The-Tito/readflow-backend,src/app.ts,18.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),NAO_SE_APLICA,Manual audit done
+Tr3sar/connecTFG-frontend,src/environments/environment.prod.ts,3.0,HARDCODED_SECRET,Potential hardcoded secret in property: secretKey,NAO_SE_APLICA,Manual audit done
+Tr3sar/connecTFG-frontend,src/app/core/model/mock-user-list.ts,4.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,NAO_SE_APLICA,Manual audit done
+Tr3sar/connecTFG-frontend,src/app/core/model/mock-user-list.ts,7.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,NAO_SE_APLICA,Manual audit done
+Tr3sar/connecTFG-frontend,src/app/core/model/mock-user-list.ts,10.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,NAO_SE_APLICA,Manual audit done
+Tr3sar/connecTFG-frontend,src/app/core/model/mock-user-list.ts,13.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,NAO_SE_APLICA,Manual audit done
+Tr3sar/connecTFG-frontend,src/app/core/model/mock-user-list.ts,16.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,NAO_SE_APLICA,Manual audit done
+len5ky/CursorRemote,src/server/relay.ts,241.0,HARDCODED_SECRET,Potential hardcoded secret in property: token,NAO_SE_APLICA,Manual audit done
+QuaLeiDer/qualeider-server,src/daily-collections/daily-collections.controller.ts,41.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',NAO_SE_APLICA,Manual audit done
+QuaLeiDer/qualeider-server,src/daily-collections/daily-collections.controller.ts,183.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',NAO_SE_APLICA,Manual audit done
+QuaLeiDer/qualeider-server,src/animals/animals.controller.ts,40.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',NAO_SE_APLICA,Manual audit done
+QuaLeiDer/qualeider-server,src/animals/animals.controller.ts,143.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',NAO_SE_APLICA,Manual audit done
+KhalidCEU/proyectoWeb2,src/index.ts,15.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),NAO_SE_APLICA,Manual audit done
+hedonvictor/PostosMervil,src/server/Server.ts,11.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),NAO_SE_APLICA,Manual audit done
+elena-calcada/agrotec-api,src/shared/infra/http/app.ts,21.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),NAO_SE_APLICA,Manual audit done
+d3vlopes/school-management,src/main/config/middleware.ts,6.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),NAO_SE_APLICA,Manual audit done
+d3vlopes/school-management,src/docs/definitions/modules/student/login/index.ts,9.0,HARDCODED_SECRET,Potential hardcoded secret in property: token,NAO_SE_APLICA,Manual audit done
+d3vlopes/school-management,src/docs/definitions/modules/teacher/login/index.ts,9.0,HARDCODED_SECRET,Potential hardcoded secret in property: token,NAO_SE_APLICA,Manual audit done
+d3vlopes/school-management,src/docs/definitions/modules/admin/login/index.ts,9.0,HARDCODED_SECRET,Potential hardcoded secret in property: token,NAO_SE_APLICA,Manual audit done
+KayoRonald/euajudo-back-end,src/shared/http/server.ts,15.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),INCORRETO,Manual audit done
+FelipeModena/trabalhante-base-api,src/main.ts,7.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),INCORRETO,
+joaoecsde/kademlia_tese,src/http/app.ts,35.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),INCORRETO,
+mateusxxlima/fisio-backend,src/auth/jwt.strategy.ts,11.0,HARDCODED_SECRET,Potential hardcoded secret in property: secretOrKey,INCORRETO,
+NessKawl/API_driveparts,src/auth/strategies/local.strategy.ts,11.0,HARDCODED_SECRET,Potential hardcoded secret in property: passwordField,INCORRETO,
+luissavighago/chatbotAcademico-frontend,src/app/components/home/header/header.component.ts,15.0,HARDCODED_SECRET,Potential hardcoded secret in property: apiKey,INCORRETO,Manual audit done
+guilhermeaugvieira/MarvelBD2,src/Dados/Data-Source.ts,9.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+mateusxxlima/fisio-backend,src/auth/auth.module.ts,17.0,HARDCODED_SECRET,Potential hardcoded secret in property: secret,INCORRETO,Manual audit done
+Jao-Rocha/onebitflix,src/adminjs/locale.ts,50.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+Jao-Rocha/onebitflix,src/adminjs/authentication.ts,23.0,HARDCODED_SECRET,Potential hardcoded secret in property: cookiePassword,INCORRETO,Manual audit done
+Jao-Rocha/onebitflix,src/database/index.ts,9.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+diname/tech-challenge-fiap,src/domain/services/auth/auth.service.impl.ts,20.0,HARDCODED_SECRET,Potential hardcoded secret in property: tokenUse,INCORRETO,Manual audit done
+JhonyDomingos/backend-just-connect,generated/prisma/internal/prismaNamespaceBrowser.ts,87.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+JhonyDomingos/backend-just-connect,generated/prisma/internal/prismaNamespaceBrowser.ts,96.0,HARDCODED_SECRET,Potential hardcoded secret in property: reset_token,INCORRETO,Manual audit done
+JhonyDomingos/backend-just-connect,generated/prisma/internal/prismaNamespaceBrowser.ts,97.0,HARDCODED_SECRET,Potential hardcoded secret in property: reset_token_expiry,INCORRETO,Manual audit done
+JhonyDomingos/backend-just-connect,generated/prisma/internal/prismaNamespace.ts,1200.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+JhonyDomingos/backend-just-connect,generated/prisma/internal/prismaNamespace.ts,1209.0,HARDCODED_SECRET,Potential hardcoded secret in property: reset_token,INCORRETO,Manual audit done
+JhonyDomingos/backend-just-connect,generated/prisma/internal/prismaNamespace.ts,1210.0,HARDCODED_SECRET,Potential hardcoded secret in property: reset_token_expiry,INCORRETO,Manual audit done
+tpiva/ts-api-me,server/config/env/production.env.ts,6.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+tpiva/ts-api-me,server/config/env/production.env.ts,11.0,HARDCODED_SECRET,Potential hardcoded secret in property: secret,INCORRETO,Manual audit done
+tpiva/ts-api-me,server/config/env/development.env.ts,6.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+tpiva/ts-api-me,server/config/env/development.env.ts,11.0,HARDCODED_SECRET,Potential hardcoded secret in property: secret,INCORRETO,Manual audit done
+LeoLink-Uniasselvi/leolink-backend,src/app.module.ts,39.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),INCORRETO,Manual audit done
+LeoLink-Uniasselvi/leolink-backend,src/modules/auth/use-cases/register/register.use-case.ts,61.0,HARDCODED_SECRET,Potential hardcoded secret in property: tokenType,INCORRETO,Manual audit done
+LeoLink-Uniasselvi/leolink-backend,src/modules/auth/use-cases/login/login.use-case.ts,63.0,HARDCODED_SECRET,Potential hardcoded secret in property: tokenType,INCORRETO,Manual audit done
+LeoLink-Uniasselvi/leolink-backend,src/modules/auth/dtos/register/register.response.dto.ts,32.0,HARDCODED_SECRET,Potential hardcoded secret in property: token,INCORRETO,Manual audit done
+LeoLink-Uniasselvi/leolink-backend,src/modules/auth/dtos/register/register.response.dto.ts,33.0,HARDCODED_SECRET,Potential hardcoded secret in property: tokenType,INCORRETO,Manual audit done
+LeoLink-Uniasselvi/leolink-backend,src/modules/auth/dtos/login/login.response.dto.ts,40.0,HARDCODED_SECRET,Potential hardcoded secret in property: token,INCORRETO,Manual audit done
+LeoLink-Uniasselvi/leolink-backend,src/modules/auth/dtos/login/login.response.dto.ts,41.0,HARDCODED_SECRET,Potential hardcoded secret in property: tokenType,INCORRETO,Manual audit done
+Tr3sar/connecTFG-frontend,src/environments/environment.ts,7.0,HARDCODED_SECRET,Potential hardcoded secret in property: secretKey,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/user/memoryUserRepository.ts,15.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/user/memoryUserRepository.ts,31.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/user/memoryUserRepository.ts,47.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/user/memoryUserRepository.ts,63.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/event/memoryEventRepository.ts,32.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/event/memoryEventRepository.ts,68.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/event/memoryEventRepository.ts,104.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,46.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,84.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,120.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,141.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,168.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,209.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,245.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,283.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,304.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,320.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,338.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,380.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,401.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+venturiniduda/progweb_apiveterinaria,src/swagger.ts,40.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+venturiniduda/progweb_apiveterinaria,src/swagger.ts,44.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+venturiniduda/progweb_apiveterinaria,src/swagger.ts,48.0,HARDCODED_SECRET,Potential hardcoded secret in property: token,INCORRETO,Manual audit done
+venturiniduda/progweb_apiveterinaria,src/swagger.ts,53.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+GuiDev115/nest-api-article,src/config/database.config.ts,17.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),INCORRETO,Manual audit done
+unb-mds/2025-2-GuiaDev,backend/backend-nest/src/main.ts,21.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',INCORRETO,Manual audit done
+unb-mds/2025-2-GuiaDev,backend/backend-nest/src/modules/auth/auth.controller.ts,68.0,HARDCODED_SECRET,Potential hardcoded secret in property: access_token,INCORRETO,Manual audit done
+ecirilo/ufsj-tecweb-20242-backend,src/main.ts,28.0,HARDCODED_SECRET,Potential hardcoded secret in property: secret,INCORRETO,Manual audit done
+ecirilo/ufsj-tecweb-20242-backend,src/app/repositories/datasource.provider.ts,12.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+Mathesis-dev/mathesis-backend,prisma/seed/implementations/user.ts,11.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+Mathesis-dev/mathesis-backend,prisma/seed/implementations/user.ts,18.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+Mathesis-dev/mathesis-backend,src/modules/auth/infra/controllers/auth.controller.ts,40.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,INCORRETO,Manual audit done
+Mathesis-dev/mathesis-backend,src/modules/auth/infra/controllers/auth.controller.ts,53.0,HARDCODED_SECRET,Potential hardcoded secret in property: access_token,INCORRETO,Manual audit done
+fga-eps-mds/2025.2-Valhalla,Back/src/main.ts,13.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),INCORRETO,Manual audit done
+fga-eps-mds/2025.2-Valhalla,Back/src/auth/strategies/local.strategy.ts,11.0,HARDCODED_SECRET,Potential hardcoded secret in property: passwordField,INCORRETO,Manual audit done
+joaowinkelmann/finalflow-api,src/main.ts,11.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+brunokobi/tccbackend,src/server.ts,12.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+FelipeRodrigues1337/mybarber-backend,src/shared/infra/http/server.ts,19.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+leonardo02lobo/Calcular-Indice-Academico-Backend,src/app.ts,9.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+renanjava/testes-escola-de-TI,src/main.ts,9.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+LucasSeraggi/TFG-Backend,src/app.ts,13.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+nirewen/uni-auto,apps/api/src/main.ts,38.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+Elian-beep/code-scratch-back,src/server.ts,33.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+guilhermeaugvieira/MarvelBD2,src/API/Servidor.ts,9.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+denisquintasluiz/Fiscalizacao-aluno-ustp,server/app.ts,45.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+mateusxxlima/fisio-backend,src/main.ts,9.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+luissimas/pooa-grupos-academicos,src/infra/repositories/academicGroup/memoryAcademicGroupRepository.ts,419.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,CORRETO,Manual audit done
+NessKawl/API_driveparts,src/main.ts,7.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+qeitiof/securecel,src/app.ts,50.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+diname/tech-challenge-fiap,src/main.ts,14.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+JhonyDomingos/backend-just-connect,src/server.ts,15.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+CyberNicky/customers-api,src/main.ts,6.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+LeoLink-Uniasselvi/leolink-backend,src/main.ts,46.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+Matheus-Merlos/Crassus-API,src/main.ts,7.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+profRenatoOliveira1/biblioteca-backend-2semestre,src/server.ts,8.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+jrinho-22/projeto-programacao-web,app/app.ts,9.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,CORRETO,Manual audit done
+jrinho-22/projeto-programacao-web,app/helpers/const.ts,5.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,CORRETO,Manual audit done
+venturiniduda/progweb_apiveterinaria,src/data-source.ts,23.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),CORRETO,Manual audit done
+venturiniduda/progweb_apiveterinaria,src/app.ts,23.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+JuniorSilGo/api-manutencao-publica,src/funcionario/funcionario.controller.ts,52.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+JuniorSilGo/api-manutencao-publica,src/funcionario/funcionario.controller.ts,59.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+JuniorSilGo/api-manutencao-publica,src/funcao/funcao.controller.ts,38.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+JuniorSilGo/api-manutencao-publica,src/funcao/funcao.controller.ts,45.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+JuniorSilGo/api-manutencao-publica,src/database/sequelize.config.ts,14.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),CORRETO,Manual audit done
+GuiDev115/nest-api-article,src/main.ts,14.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+DovCaio/principios_desenvolvimento_web,src/app.ts,14.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+tainamariott/ecommerce-backend,src/app.module.ts,25.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),CORRETO,Manual audit done
+RobertaAccorsi/ecommerce-backend,src/app.module.ts,25.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),CORRETO,Manual audit done
+libajunior/ecommerce-backend,src/app.module.ts,23.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),CORRETO,Manual audit done
+ron010-1/criancaFeliz-pw1,src/server.ts,15.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+disouzam/atividades-arq-aplicacoes-nodejs-puc-minas-2025,apps/tasks/src/infrastructure/infrastructure.module.ts,17.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),CORRETO,Manual audit done
+disouzam/atividades-arq-aplicacoes-nodejs-puc-minas-2025,apps/project-manager-api/src/infrastructure/auth/constants.ts,2.0,HARDCODED_SECRET,Potential hardcoded secret in property: secret,CORRETO,Manual audit done
+disouzam/atividades-arq-aplicacoes-nodejs-puc-minas-2025,apps/project-manager-api/src/infrastructure/database/database.module.ts,16.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),CORRETO,Manual audit done
+enriconovellino/ProjDevWebBack,server.ts,30.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+LudmilaASouza/projeto-labEddit-backend,src/index.ts,12.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+ecirilo/ufsj-tecweb-20242-backend,src/main.ts,38.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+ecirilo/ufsj-tecweb-20242-backend,src/app/auth/auth0.strategy.ts,14.0,HARDCODED_SECRET,Potential hardcoded secret in property: tokenURL,CORRETO,Manual audit done
+ecirilo/ufsj-tecweb-20242-backend,src/app/auth/auth0.strategy.ts,16.0,HARDCODED_SECRET,Potential hardcoded secret in property: clientSecret,CORRETO,Manual audit done
+ecirilo/ufsj-tecweb-20242-backend,src/app/repositories/datasource.provider.ts,15.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),CORRETO,Manual audit done
+Brun0Nasc/ifce-achados,src/app.ts,13.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+oliveiramatheux/tcc-escambooks-api,src/server.ts,15.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+unir-dacc/mural-de-fotos-backend,src/main.ts,18.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+preciousakura/me.formei-backend,src/main.ts,9.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+preciousakura/me.formei-backend,src/config/constants.ts,2.0,HARDCODED_SECRET,Potential hardcoded secret in property: secret,CORRETO,Manual audit done
+ilmardanilo/pctup-api,src/main/config/setup-middlewares.ts,14.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+Guibs969/projetoDs,src/server.ts,7.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,Manual audit done
+anniasebold/subscription-api,src/main.ts,28.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',CORRETO,Manual audit done
+anniasebold/subscription-api,src/app.module.ts,22.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),CORRETO,Manual audit done
+iury-assuncao/voluntaria-tech-backend,src/index.ts,12.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,
+ralfferreira/hexperience-api,src/shared/infra/http/server.ts,21.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,
+mateusxxlima/fisio-backend,src/configs/typeorm.config.ts,7.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),CORRETO,
+Hyagobsantos/Api-LojaStarWars,src/auth/jwt.constants.ts,2.0,HARDCODED_SECRET,Potential hardcoded secret in property: secret,CORRETO,
+GabrielMartinsDoliveira/Residencia_PD_25.2_backend,src/data-source.ts,14.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),CORRETO,
+GabrielMartinsDoliveira/Residencia_PD_25.2_backend,src/app.ts,18.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,
+CarlosNiz/atividade-faculdade-backend,src/main.ts,6.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,
+diname/tech-challenge-fiap,src/shared/utils/initializers/cors.initializer.ts,4.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),CORRETO,
+diname/tech-challenge-fiap,src/infrastructure/typeorm/config/postgres.config.service.ts,21.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),CORRETO,

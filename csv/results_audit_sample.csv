@@ -1,16 +1,16 @@
 Repo,File,Line,Type,Description,ReviewerNote,Status
-anniasebold/subscription-api,src/main.ts,28.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',Manual audit done,CORRETO
-Hyagobsantos/Api-LojaStarWars,src/auth/jwt.constants.ts,2.0,HARDCODED_SECRET,Potential hardcoded secret in property: secret,CORRETO
-joaowinkelmann/finalflow-api,src/main.ts,11.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',Manual audit done,CORRETO
-ecirilo/ufsj-tecweb-20242-backend,src/app/repositories/datasource.provider.ts,15.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),Manual audit done,CORRETO
-LucasSeraggi/TFG-Backend,src/app.ts,13.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),Manual audit done,CORRETO
-disouzam/atividades-arq-aplicacoes-nodejs-puc-minas-2025,apps/tasks/src/infrastructure/infrastructure.module.ts,17.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),Manual audit done,CORRETO
-GuiDev115/nest-api-article,src/config/database.config.ts,17.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),Manual audit done,INCORRETO
-KayoRonald/euajudo-back-end,src/shared/http/server.ts,15.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),Manual audit done,INCORRETO
-luissimas/pooa-grupos-academicos,src/infra/repositories/event/memoryEventRepository.ts,104.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,Manual audit done,INCORRETO
-tpiva/ts-api-me,server/config/env/development.env.ts,11.0,HARDCODED_SECRET,Potential hardcoded secret in property: secret,Manual audit done,INCORRETO
-diname/tech-challenge-fiap,src/domain/services/auth/auth.service.impl.ts,20.0,HARDCODED_SECRET,Potential hardcoded secret in property: tokenUse,Manual audit done,INCORRETO
-brunokobi/tccbackend,src/server.ts,12.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),Manual audit done,CORRETO
-Jao-Rocha/onebitflix,src/adminjs/authentication.ts,23.0,HARDCODED_SECRET,Potential hardcoded secret in property: cookiePassword,Manual audit done,INCORRETO
-JhonyDomingos/backend-just-connect,generated/prisma/internal/prismaNamespace.ts,1210.0,HARDCODED_SECRET,Potential hardcoded secret in property: reset_token_expiry,Manual audit done,INCORRETO
-NessKawl/API_driveparts,src/auth/strategies/local.strategy.ts,11.0,HARDCODED_SECRET,Potential hardcoded secret in property: passwordField,Manual audit done,INCORRETO
+https://github.com/anniasebold/subscription-api,src/main.ts ,28.0,NESTJS_MASS_ASSIGNMENT,ValidationPipe missing 'whitelist: true',Manual audit done,CORRETO
+https://github.com/Hyagobsantos/Api-LojaStarWars,src/auth/jwt.constants.ts ,2.0,HARDCODED_SECRET,Potential hardcoded secret in property: secret,CORRETO
+https://github.com/joaowinkelmann/finalflow-api,src/main.ts,11.0,NESTJS_MASS_ASSIGNMENT ,ValidationPipe missing 'whitelist: true',Manual audit done,CORRETO
+https://github.com/ecirilo/ufsj-tecweb-20242-backend,src/app/repositories/datasource.provider.ts ,15.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),Manual audit done,CORRETO
+https://github.com/LucasSeraggi/TFG-Backend,src/app.ts ,13.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),Manual audit done,CORRETO
+https://github.com/disouzam/atividades-arq-aplicacoes-nodejs-puc-minas-2025,apps/tasks/src/infrastructure/infrastructure.module.ts ,17.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),Manual audit done,CORRETO
+https://github.com/GuiDev115/nest-api-article,src/config/database.config.ts ,17.0,DB_AUTO_SYNC,Database synchronization enabled (Risk of data loss),Manual audit done,INCORRETO
+https://github.com/KayoRonald/euajudo-back-end,src/shared/http/server.ts ,15.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),Manual audit done,INCORRETO
+https://github.com/luissimas/pooa-grupos-academicos,src/infra/repositories/event/memoryEventRepository.ts ,104.0,HARDCODED_SECRET,Potential hardcoded secret in property: password,Manual audit done,INCORRETO
+https://github.com/tpiva/ts-api-me,server/config/env/development.env.ts ,11.0,HARDCODED_SECRET,Potential hardcoded secret in property: secret,Manual audit done,INCORRETO
+https://github.com/diname/tech-challenge-fiap,src/domain/services/auth/auth.service.impl.ts ,20.0,HARDCODED_SECRET,Potential hardcoded secret in property: tokenUse,Manual audit done,INCORRETO
+https://github.com/brunokobi/tccbackend,src/server.ts ,12.0,INSECURE_CORS,Permissive CORS policy (Wildcard detected),Manual audit done,CORRETO
+https://github.com/Jao-Rocha/onebitflix,src/adminjs/authentication.ts ,23.0,HARDCODED_SECRET,Potential hardcoded secret in property: cookiePassword,Manual audit done,INCORRETO
+https://github.com/JhonyDomingos/backend-just-connect,generated/prisma/internal/prismaNamespace.ts ,1210.0,HARDCODED_SECRET,Potential hardcoded secret in property: reset_token_expiry,Manual audit done,INCORRETO
+https://github.com/NessKawl/API_driveparts,src/auth/strategies/local.strategy.ts ,11.0,HARDCODED_SECRET,Potential hardcoded secret in property: passwordField,Manual audit done,INCORRETO

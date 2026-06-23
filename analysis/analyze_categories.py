@@ -72,4 +72,4 @@ def analisar_categorias_vulnerabilidades(csv_path):
     plt.show()
 
 if __name__ == "__main__":
-    analisar_categorias_vulnerabilidades('../typescript_results/results_audit.csv')
+    analisar_categorias_vulnerabilidades('../csv/results_audit_limpo.csv')

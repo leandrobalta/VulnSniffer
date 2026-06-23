@@ -57,4 +57,4 @@ def analisar_repositorios(csv_path):
 
 # Executar a função passando o seu arquivo mapeado
 if __name__ == "__main__":
-    analisar_repositorios('typescript_results/results_audit.csv')
+    analisar_repositorios('../csv/results_audit_limpo.csv')

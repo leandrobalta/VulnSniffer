@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Carregar os dois estados dos dados
-df_ast = pd.read_csv('typescript_results/results_ast_analysis.csv')
-df_audit = pd.read_csv('typescript_results/results_audit.csv')
+df_ast = pd.read_csv('../csv/results_ast_analysis_limpo.csv')
+df_audit = pd.read_csv('../csv/results_audit_limpo.csv')
 
 # Contar alertas iniciais encontrados pela AST
 ast_counts = df_ast['Type'].value_counts()
